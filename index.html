@@ -10,11 +10,16 @@
 
 <body>
     <div id="app">
-        <sharedlink v-for="item in links" v-bind:link="item" v-bind:key="item.id">
+        <input v-model="keyword">
+        <sharedlink v-for="item in filteredLinks" :link="item" :key="item.id">
         </sharedlink>
-        <input v-model="inputLink">
-        <button v-on:click="submitLink">Submit</button>
-        <button v-on:click="clear">Clear</button>
+        <input v-model="input.url">
+        <ul>
+            <taginput v-for="(tag, index) in input.tags" :tags="input.tags" :key="index" :index="index"></taginput>
+        </ul>
+        <button @click="addTag">Add tag</button>
+        <button @click="submitLink">Submit</button>
+        <button @click="clear">Clear</button>
         </ul>
     </div>
 
